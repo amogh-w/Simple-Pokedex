@@ -32,6 +32,11 @@ export const PokemonSearch: React.FC = () => {
       });
   };
 
+  const onClearClicked = () => {
+    setPokemonDetails(null);
+    pokemonNameEntered.current.value = "";
+  };
+
   return (
     <Container maxWidth="sm">
       <Paper
@@ -54,7 +59,7 @@ export const PokemonSearch: React.FC = () => {
           color="primary"
           variant="outlined"
           style={{ marginTop: "16px", marginBottom: "8px", marginLeft: "8px" }}
-          onClick={() => setPokemonDetails(null)}
+          onClick={onClearClicked}
         >
           Clear
         </Button>
