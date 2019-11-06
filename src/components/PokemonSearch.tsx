@@ -21,7 +21,6 @@ export const PokemonSearch: React.FC = () => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemonToSearch}`)
       .then(response => {
-        console.log(response.data);
         let newPokemon = {
           name: response.data.name,
           numberOfAbilities: response.data.abilities.length,
