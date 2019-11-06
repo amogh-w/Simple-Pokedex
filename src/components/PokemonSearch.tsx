@@ -2,9 +2,11 @@ import React, { useState, useRef } from "react";
 import { Paper, Typography, Button, TextField } from "@material-ui/core";
 import axios from "axios";
 import { PokemonResult } from "./PokemonResult";
+import { Pokemon } from "../types/types";
 
 export const PokemonSearch: React.FC = () => {
   const pokemonNameEntered = useRef<HTMLInputElement>(null);
+  const [pokemonDetails, setPokemonDetails] = useState<Pokemon | null>(null);
 
   const onSearchClick = () => {
     const pokemonToSearch = pokemonNameEntered.current.value;
@@ -12,6 +14,13 @@ export const PokemonSearch: React.FC = () => {
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemonToSearch}`)
       .then(response => {
         console.log(response.data);
+        let newPokemon = {
+          name: response.data.name,
+          numberOfAbilities: response.data.abilities.length,
+          baseExperience: response.data.base_experience,
+          imageUrl: response.data.sprites.front_default
+        };
+        setPokemonDetails(newPokemon);
       });
   };
 
